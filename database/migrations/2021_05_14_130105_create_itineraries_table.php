@@ -15,7 +15,7 @@ class CreateItinerariesTable extends Migration
     {
         Schema::create('itineraries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('trip_id'); 
+            $table->foreignId('trip_id')->constrained()->cascadeOnDelete();
             $table->smallInteger('day');
             $table->string('day_title');
             $table->smallInteger('day_max_altitude');

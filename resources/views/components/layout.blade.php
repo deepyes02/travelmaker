@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Travel Maker, Travel App, Laravel Travel App">
     <meta name="description" content="Backend Laravel Framework Travel Application optimized for SEO and User Interface">
+    @if(csrf_token())
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @endif
 
     <title>{{$title}}</title>
 
@@ -21,7 +24,7 @@
         <div class="menu">
         @if (Route::has('login'))
             @auth
-            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+            <a href="{{ route('dashboard') }}" class="text-sm text-gray-700 underline">Admin</a>
             @else
             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 

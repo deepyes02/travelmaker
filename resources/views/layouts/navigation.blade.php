@@ -13,10 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Admin') }}
+                        {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('trips')" :active="request()->routeIs('trips')">
                         {{ __('Trips') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('getCategories')" :active="request()->routeIs('getCategories')">
+                        {{ __('Categories') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -68,6 +71,10 @@ this.closest('form').submit();">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('trips')" :active="request()->routeIs('trips')">
+                        {{ __('Trips') }}
+                    </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

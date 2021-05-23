@@ -22,6 +22,7 @@ class CreateTripsTable extends Migration
             $table->enum('difficulty', ['easy', 'medium', 'hard']);
             $table->integer('max_altitude_mtr');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,5 +34,6 @@ class CreateTripsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('trips');
+        Schema::table('trips', fn(Blueprint $table) => $table->dropSoftDeletes());
     }
 }

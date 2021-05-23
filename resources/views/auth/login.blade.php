@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-application-logo class="w-40 h-40 fill-current text-gray-500" />
             </a>
         </x-slot>
 
@@ -46,11 +46,21 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
             </div>
+            <div class="mt-4">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                        {{ __('Don\'t have an account? Sign up') }}
+                    </a>
+            </div>
         </form>
+        <script>
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        email.value = 'deepyes@outlook.com';
+        password.value = 12345678;
+        </script>
     </x-auth-card>
 </x-guest-layout>

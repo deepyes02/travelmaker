@@ -47,7 +47,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Already registered? Login Instead') }}
                 </a>
 
                 <x-button class="ml-4">
@@ -55,5 +55,16 @@
                 </x-button>
             </div>
         </form>
+        <script>
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const pwd = document.getElementById('password');
+    const pwd_confirm = document.getElementById('password_confirmation');
+    name.value = "Deepesh";
+    email.value = "deepyes@outlook.com";
+    pwd.value = 12345678;
+    pwd_confirm.value = 12345678;
+    </script>
     </x-auth-card>
+   
 </x-guest-layout>

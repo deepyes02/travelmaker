@@ -10,7 +10,7 @@
     </div>
     @endif
     <div class="py-5">
-        <form action="{{ route ( 'update-post', ['trip' => $trip] ) }}" method="POST">
+        <form action="{{ route ( 'update-trip', ['trip' => $trip] ) }}" method="POST">
             @csrf
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

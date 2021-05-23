@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,5 +30,6 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('categories');
+        Schema::table('categories', fn (Blueprint $table) => $table->dropSoftDeletes());
     }
 }

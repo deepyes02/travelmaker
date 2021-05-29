@@ -9,6 +9,7 @@
         <p>Difficulty: {{$trip->difficulty}}</p>
         <p>Max-altitude: {{$trip->max_altitude_mtr}} meters / {{round($trip->max_altitude_mtr * 3.2)}} ft</p>
         <p>Category: <a href="{{$trip->category->slug}}">{{$trip->category->name}}</a></p>
+        <p>Created at: {{$trip->convertDate($trip->created_at)}}</p>
     </div>
     @endforeach
 </div>

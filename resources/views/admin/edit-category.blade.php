@@ -10,8 +10,7 @@
     </div>
     @endif
     <div class="py-5">
-    <form action="{{ route ( 'update-category', ['category' => $category] ) }}" method="POST">
-            @csrf
+    <form id="updateCategory">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
@@ -43,7 +42,7 @@
                         </select>
                     </div>
                 </div>
-                <x-button class="ml-1" name="submit" type="submit">Update Category</x-button>
+                <x-button class="ml-1" name="submit" type="submit" id="updateSubmit">Update Category</x-button>
             </div>
         </form>
         <div class=" mt-10 max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -60,4 +59,34 @@
         </div>
         </div>
     </div>
+    <script>
+    //ajax using jquery
+        $("#updateSubmit").click(function(event){
+            event.preventDefault();
+
+            //input selectors
+            let category_name = $("input[name=category_name]").val();
+            let category_slug = $("input[name=category_slug").val();
+            let _token = $('meta[name="csrf-token"]').attr('content');
+
+            //ajax function
+            let url = "<?php echo route ( 'edit-category', ['category' => $category] ) ?>";
+            $.ajax({
+                url: url,
+                type: "POST",
+                data:
+                {
+                    category_name:category_name,
+                    category_slug:category_slug,
+                    _token:_token
+                },
+
+                success:
+                function (response) {
+                    console.log(response);
+                }
+            })
+
+        })
+    </script>
 </x-app-layout>

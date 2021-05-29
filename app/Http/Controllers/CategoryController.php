@@ -34,17 +34,23 @@ class CategoryController extends Controller
         return redirect('admin/edit-category/' . $category->slug)->with('status', "Category {$category->name} has been added successfully");
     }
 
+    // public function updateCategory(Request $request)
+    // {
+    //     // return $request;
+    //     $category = Category::find($request->category_id);
+    //     // $to_delete_trip = Trip::find($request->trip_id);
+    //     $category->name = $request->category_name;
+    //     $category->slug = $request->category_slug;
+    //     $category->save();
+
+    //     //run the eloquent sql
+    //     return redirect("admin/edit-category/{$category->slug}")->with('status', "Category {$category->name} updated successfully!");
+    // }
+
     public function updateCategory(Request $request)
     {
-        // return $request;
-        $category = Category::find($request->category_id);
-        // $to_delete_trip = Trip::find($request->trip_id);
-        $category->name = $request->category_name;
-        $category->slug = $request->category_slug;
-        $category->save();
-
-        //run the eloquent sql
-        return redirect("admin/edit-category/{$category->slug}")->with('status', "Category {$category->name} updated successfully!");
+        $data = $request->all();
+        return response()->json(['success' => 'Ajax request Submitted Successfully']);
     }
 
 }

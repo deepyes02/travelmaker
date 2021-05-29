@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Trips') }}
         </h2>
-        <x-nav-link href="{{route('trips')}}">{{ __('Total Trips (') . (count($trips) > 0 ? count($trips) : "0") . ")" }}</x-nav-link>
+        <x-nav-link href="{{route('trips')}}">{{ __('Total Trips') }}</x-nav-link>
         <x-nav-link href="{{route('add-trip')}}">{{ __('Add New Trip') }}</x-nav-link>
         <x-nav-link href="{{route('trash-trips')}}">{{ __('Trash') }}</x-nav-link>
     </x-slot>

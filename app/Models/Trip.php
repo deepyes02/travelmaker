@@ -23,5 +23,14 @@ class Trip extends Model
     {
         return $this->belongsTo(User::class);
     }
+     /**
+     * Convert and echo SQL TimeStamp into date format
+     */
+    public function convertDate ($timestamp)
+    {
+        $phpdate = strtotime( $timestamp );
+        $humanReadableDate = date("Y-m-d", $phpdate);
+        return __($humanReadableDate);
+    }
 
 }

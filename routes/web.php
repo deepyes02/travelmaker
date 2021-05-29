@@ -21,16 +21,19 @@ Route::get('/', fn () => view('home'));
 Route::get('/trips', [TripController::class, 'index']);
 Route::get('/trips/{trip:slug}', [TripController::class, 'trip_by_slug']);
 
+require __DIR__ . '/auth.php';
+
 //admin routes
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->middleware(['auth'])->name('dashboard');
 
-    require __DIR__ . '/auth.php';
 
     //read trips archive
     Route::get('trips', [TripController::class, 'getAdminTrips'])->middleware(['auth'])->name('trips');
+    //read trashed trips
+    Route::get('trips/trash', [TripController::class, 'getSoftDeletedTrips'])->middleware(['auth'])->name('trash-trips');
     //read add-trip page
     Route::get('add-trip', [TripController::class, 'getAddAdminTrip'])->middleware(['auth'])->name('add-trip');
     //update trip on add-trip page

@@ -75,4 +75,9 @@ class TripController extends Controller
             return redirect(route('trips'))->with('status', "Trip not deleted, try again");
         }
     }
+   
+    public function getSoftDeletedTrips()
+    {
+        return view('admin.trashed-trips', ['trips' => Trip::onlyTrashed()->get()]);
+    }
 }

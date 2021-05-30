@@ -67,10 +67,10 @@ class TripController extends Controller
 
     public function deleteTrip(Request $request)
     {
-        $to_delete_trip = Trip::find($request->trip_id);
-        if($to_delete_trip !== null){
-        $to_delete_trip->delete();
-        return redirect(route('trips'))->with('status', "Trip {$to_delete_trip->name} deleted sucessfully");
+        $trip = Trip::find($request->trip_id);
+        if($trip !== null){
+        $trip->delete();
+        return redirect(route('trips'))->with('status', "Trip {$trip->name} deleted sucessfully");
         } else {
             return redirect(route('trips'))->with('status', "Trip not deleted, try again");
         }
@@ -79,5 +79,30 @@ class TripController extends Controller
     public function getSoftDeletedTrips()
     {
         return view('admin.trashed-trips', ['trips' => Trip::onlyTrashed()->get()]);
+    }
+
+    public function forceDeleteTrip(Request $request)
+    {
+        $trip = Trip::onlyTrashed()->find($request->trip_id);
+        if($trip !== null){ //make sure trip exists, serverside
+            $trip->forceDelete();
+            return redirect(route('getTrashedTrips'))->with('status', "Trip {$trip->name} permanently deleted");
+        } else {
+            return "Sorry trip not found";
+        }
+    }
+
+    public function restoreTrip(Request $request)
+    {
+        $trip = Trip::onlyTrashed()->find($request->trip_id);
+        if($trip !== null)
+        {
+            $trip->restore();
+            return redirect(route('getTrashedTrips'))->with('status', "Trip {$trip->name} restored successfully");
+        }
+        else {
+            return redirect(route('getTrashedTrips'))->with('status', "Sorry can't restore the trip");
+        }
+
     }
 }

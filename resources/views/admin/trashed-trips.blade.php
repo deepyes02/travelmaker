@@ -5,7 +5,7 @@
         </h2>
         <x-nav-link href="{{route('trips')}}">{{ __('Total Trips') }}</x-nav-link>
         <x-nav-link href="{{route('add-trip')}}">{{ __('Add New Trip') }}</x-nav-link>
-        <x-nav-link href="{{route('trash-trips')}}">{{ __('Trash') }}</x-nav-link>
+        <x-nav-link href="{{route('getTrashedTrips')}}">{{ __('Trash') }}</x-nav-link>
     </x-slot>
     @if(session('status'))
     <div class="py-5">
@@ -30,18 +30,27 @@
                     @endif
                     <br>
                     <x-nav-link href="{{ route('get-edit-trip', ['trip' => $trip]) }}">{{ __('Edit') }}</x-nav-link>
-                    <form action="{{ route ( 'delete-post', ['trip' => $trip]) }}" method="POST">
+                </div>
+                <div class="flex">
+                    <form action="{{ route ( 'force-delete-post', ['trip' => $trip]) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="delete" />
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
                         <input type="hidden" name="trip_id" value="{{$trip->id}}" />
-                        <x-button class="ml-1" name="del_submit" type="submit">Delete Trip</x-button>
+                        <x-button class="ml-1" name="submit" type="submit">Permanently Delete Trip</x-button>
+                    </form>
+                    <form action="{{ route('restoreTrip', ['trip' => $trip]) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
+                        <input type="hidden" name="trip_id" value="{{$trip->id}}" />
+                        <x-button class="ml-1" name="submit" type="submit">Restore Trip</x-button>
                     </form>
                 </div>
+            
                 @endforeach
                 @else
                 <div class="p-6 bg-white border-b border-gray-200">
-                    No Trips available. Add some to get started
+                    <h2>Deleted Trips will appear here</h2>
                 </div>
                 @endif
             </div>

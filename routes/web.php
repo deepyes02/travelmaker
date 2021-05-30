@@ -33,7 +33,7 @@ Route::prefix('admin')->group(function () {
     //read trips archive
     Route::get('trips', [TripController::class, 'getAdminTrips'])->middleware(['auth'])->name('trips');
     //read trashed trips
-    Route::get('trips/trash', [TripController::class, 'getSoftDeletedTrips'])->middleware(['auth'])->name('trash-trips');
+    Route::get('trips/trash', [TripController::class, 'getSoftDeletedTrips'])->middleware(['auth'])->name('getTrashedTrips');
     //read add-trip page
     Route::get('add-trip', [TripController::class, 'getAddAdminTrip'])->middleware(['auth'])->name('add-trip');
     //update trip on add-trip page
@@ -43,8 +43,13 @@ Route::prefix('admin')->group(function () {
     //update edit-trip page
     Route::post('edit-trip/{trip:slug}', [TripController::class, 'updateTrip'])->middleware(['auth'])->name('update-trip');
 
-    //delete trip route
-    Route::delete('edit-trip/{trip:slug}', [TripController::class, 'deleteTrip'])->middleware(['auth'])->name('delete-post');
+    //delete trip route (trash)
+    Route::delete('delete-trip/{trip:slug}', [TripController::class, 'deleteTrip'])->middleware(['auth'])->name('delete-post');
+
+    //force delete trip route
+    Route::delete('force-delete-trip/{trip:slug}', [TripController::class, 'forceDeleteTrip'])->middleware(['auth'])->name('force-delete-post');
+    //restore deleted trip
+    Route::post('restore-trip/{trip:slug}', [TripController::class, 'restoreTrip'])->middleware(['auth'])->name('restoreTrip');
 
     // read categories archive
     Route::get('categories', [CategoryController::class, 'index'])->middleware(['auth'])->name('getCategories');

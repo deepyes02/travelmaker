@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function () {
 
 
     //read trips archive
+
     Route::get('trips', [TripController::class, 'getAdminTrips'])->middleware(['auth'])->name('trips');
     //read trashed trips
     Route::get('trips/trash', [TripController::class, 'getSoftDeletedTrips'])->middleware(['auth'])->name('getTrashedTrips');

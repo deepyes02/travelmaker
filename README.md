@@ -4,6 +4,30 @@
 
 Travel Maker is a [Laravel](https://laravel.com") Based Web Application that is custom built to provide a sturdy backbone for any frontend designs. The backend provides various functionalities for adding, editing trip packages, itineraries, categories, homepage slider pictures, trip galleries, user roles and so on. Currently following are how it is working.
 
+## Developer's Note
+- [IDE HELPER](https://github.com/barryvdh/laravel-ide-helper/) configuration clearly helps to add docfile as well as discover native methods coming with the class.
+
+```bash
+#install the packages
+composer require --dev barryvdh/laravel-ide-helper
+```
+
+- Include the class in ```providers``` array in ```config/app.php```
+```bash
+Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+```
+
+- Running the main codes
+```bash
+##ide helper
+php artisan ide-helper:generate
+
+### ide-helper for models
+php artisan ide-helper:models
+
+##phpstorm meta file (only works in php storm, still)
+php artisan ide-helper:meta
+```
 
 <br><br>
 # Features and Capabilities
